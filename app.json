@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Medisound",
-    "slug": "Medisound",
+    "name": "medisound",
+    "slug": "medisound",
     "platforms": [
       "ios",
       "android",
@@ -22,7 +22,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.medisound"
+    },
+    "android": {
+      "package": "com.medisound"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
