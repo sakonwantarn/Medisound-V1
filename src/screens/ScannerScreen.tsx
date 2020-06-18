@@ -2,8 +2,7 @@ import React from "react";
 import { Camera } from "expo-camera";
 import {
   SafeAreaView,
-  View,
-  Alert,
+  View, 
   Text,
   TouchableOpacity,
 } from "react-native";
@@ -32,6 +31,12 @@ export default class ScannerScreen extends React.Component<{}, State> {
 
   componentDidMount() {
     activateKeepAwake();
+    this.cameraPermission();
+  }
+
+  async cameraPermission() {
+    const { status } = await Camera.requestPermissionsAsync();
+    console.log("camera status: ", status);
   }
 
   setModalVisible(visible: any) {
@@ -170,7 +175,7 @@ export default class ScannerScreen extends React.Component<{}, State> {
               this.setModalVisible(!this.state.modalVisible);
             }}
             onRequestClose={() => {
-              Alert.alert("Modal has been closed.");
+              this.setModalVisible(!this.state.modalVisible);
             }}
             visible={this.state.modalVisible}
           />
