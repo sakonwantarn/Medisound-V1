@@ -1,9 +1,62 @@
 import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ScannerScreen from "./src/screens/ScannerScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import Medlist from "./src/screens/Medlist";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { colors } from "./src/res/colors";
+
+const Tab = createBottomTabNavigator();
 
 class App extends React.Component {
   render() {
-    return <ScannerScreen />;
+    return (
+      <NavigationContainer>
+        <Tab.Navigator
+          backBehavior="initialRoute"
+          tabBarOptions={{
+            activeTintColor: colors.RED_BROWN,
+            inactiveTintColor: colors.RED_BROWN_FADED,
+            tabStyle: {
+              backgroundColor:colors.ORANGE_LIGHT, 
+              paddingTop: 2, 
+              shadowColor: colors.BLACK,
+              borderWidth: 0
+            },
+            labelStyle: {fontSize:16, fontWeight: "bold"},
+          }}
+        >
+          <Tab.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              tabBarIcon: ({ size, color }) => (
+                <FontAwesome name="heart" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Camera"
+            component={ScannerScreen}
+            options={{
+              tabBarIcon: ({ size, color }) => (
+                <FontAwesome name="camera" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="MedList"
+            component={Medlist}
+            options={{
+              tabBarIcon: ({ size, color }) => (
+                <FontAwesome5 name="notes-medical" size={size} color={color} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    );
   }
 }
 
