@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ScannerScreen from "./src/screens/ScannerScreen";
+import Camera from "./src/screens/Camera";
 import HomeScreen from "./src/screens/HomeScreen";
 import Medlist from "./src/screens/Medlist";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
@@ -19,12 +19,12 @@ class App extends React.Component {
             activeTintColor: colors.RED_BROWN,
             inactiveTintColor: colors.RED_BROWN_FADED,
             tabStyle: {
-              backgroundColor:colors.ORANGE_LIGHT, 
-              paddingTop: 2, 
+              backgroundColor: colors.ORANGE_LIGHT,
+              paddingTop: 2,
               shadowColor: colors.BLACK,
-              borderWidth: 0
+              borderWidth: 0,
             },
-            labelStyle: {fontSize:16, fontWeight: "bold"},
+            labelStyle: { fontSize: 16, fontWeight: "bold" },
           }}
         >
           <Tab.Screen
@@ -38,11 +38,12 @@ class App extends React.Component {
           />
           <Tab.Screen
             name="Camera"
-            component={ScannerScreen}
+            component={Camera}
             options={{
               tabBarIcon: ({ size, color }) => (
                 <FontAwesome name="camera" size={size} color={color} />
               ),
+              tabBarVisible: false,
             }}
           />
           <Tab.Screen

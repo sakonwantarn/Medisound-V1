@@ -2,6 +2,7 @@ import React from "react";
 import { Modal as RNModal, View, Text, TouchableOpacity } from "react-native";
 import { styles } from "../res/styles";
 import { colors } from "../res/colors";
+import Button from "./Button";
 
 interface Props {
   animationType?: "slide" | "fade" | "none";
@@ -11,6 +12,7 @@ interface Props {
   description: string;
   buttonTitle: string;
   onPress(): void;
+  type?: "normal" | "done";
 }
 
 class Modal extends React.Component<Props> {
@@ -19,9 +21,10 @@ class Modal extends React.Component<Props> {
   }
 
   static defaultProps = {
-    animationType: "slide",
+    animationType: "fade",
     transparent: true,
     visible: false,
+    type: "normal",
   };
 
   render() {
@@ -33,8 +36,16 @@ class Modal extends React.Component<Props> {
       visible,
       onRequestClose,
       onPress,
+      type,
       ...res
     } = this.props;
+    let textColor: string;
+
+    if (type === "done") {
+      textColor = colors.GREEN_SUCESS;
+    } else {
+      textColor = colors.RED_BROWN;
+    }
 
     return (
       <RNModal
@@ -45,13 +56,12 @@ class Modal extends React.Component<Props> {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>{description}</Text>
-            <TouchableOpacity
-              style={{ ...styles.openButton, backgroundColor: colors.BLUE }}
-              onPress={onPress}
-            >
-              <Text style={styles.textStyle}>{buttonTitle}</Text>
-            </TouchableOpacity>
+            <Text style={[styles.modalText, { color: textColor }]}>
+              {description}
+            </Text>
+            <Button onPress={onPress} type="solid">
+              {buttonTitle}
+            </Button>
           </View>
         </View>
       </RNModal>

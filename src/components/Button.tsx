@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Feather } from '@expo/vector-icons';
+import { Feather } from "@expo/vector-icons";
 import { styles } from "../res/styles";
 import { colors } from "../res/colors";
 
@@ -19,22 +19,32 @@ class Button extends React.Component<Props> {
 
   static defaultProps = {
     type: "solid",
-    icon: false
+    icon: false,
   };
 
   render() {
     const { children, icon, type, onPress } = this.props;
     if (type === "outline") {
       return (
-        <TouchableOpacity onPress={onPress} style={{...styles.button, ...styles.buttonOutline}}>
-            {icon?<Feather name={icon} size={20} color={colors.RED_BROWN}/>:icon}
+        <TouchableOpacity
+          onPress={onPress}
+          style={{ ...styles.button, ...styles.buttonOutline }}
+        >
+          {icon ? (
+            <Feather name={icon} size={20} color={colors.RED_BROWN} />
+          ) : (
+            icon
+          )}
           <Text style={styles.buttonText}>{children}</Text>
         </TouchableOpacity>
       );
     } else
       return (
-        <TouchableOpacity style={styles.button}>
-          <Text>{children}</Text>
+        <TouchableOpacity
+          onPress={onPress}
+          style={[styles.button, styles.buttonSolid]}
+        >
+          <Text style={styles.buttonText}>{children}</Text>
         </TouchableOpacity>
       );
   }
