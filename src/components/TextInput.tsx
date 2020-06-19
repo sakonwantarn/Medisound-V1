@@ -4,10 +4,12 @@ import { styles } from "../res/styles";
 import { colors } from "../res/colors";
 
 interface Props {
-  onChangeText(): void;
+  onChangeText?: (text: string) => void;
   value?: string;
   placeholder?: string;
   label?: string;
+  last?: boolean;
+  editable?: boolean;
 }
 
 class TextInput extends React.Component<Props> {
@@ -15,20 +17,26 @@ class TextInput extends React.Component<Props> {
     super(props);
   }
 
+  static defaultProps = {
+    last: false,
+    editable: true
+  }
+
   render() {
-    const { onChangeText, value, placeholder, label } = this.props;
+    const { onChangeText, value, placeholder, label, last, editable } = this.props;
     return (
-      <View style={styles.textInputContainer}>
-        <View style={{flex: 1}}>
+      <View style={[styles.textInputContainer, last?null:{borderBottomWidth: 1}]}>
+        <View style={{ flex: 1 }}>
           <Text style={styles.textInputLabel}>{label}</Text>
         </View>
-        <View style={{flex: 3, alignItems: "flex-end"}}>
+        <View style={{ flex: 2, alignItems: "flex-end" }}>
           <RNTextInput
             onChangeText={onChangeText}
             value={value}
             placeholder={placeholder}
-            placeholderTextColor={colors.GRAY_SEPARATOR} 
+            placeholderTextColor={colors.GRAY_SEPARATOR}
             style={styles.textInputForm}
+            editable={editable}
           />
         </View>
       </View>

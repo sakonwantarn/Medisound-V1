@@ -1,11 +1,6 @@
 import React from "react";
 import { Camera } from "expo-camera";
-import {
-  SafeAreaView,
-  View, 
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
 import { Audio } from "expo-av";
 import * as ImageManipulator from "expo-image-manipulator";
 import { activateKeepAwake } from "expo-keep-awake";
@@ -15,6 +10,7 @@ import scraper from "../services/scraper";
 import vajaAPI from "../services/vajaAPI";
 import vision from "@react-native-firebase/ml-vision";
 import Modal from "../components/Modal";
+import { colors } from "../res/colors";
 
 interface State {
   modalVisible: any;
@@ -163,11 +159,56 @@ export default class ScannerScreen extends React.Component<{}, State> {
           ref={(ref) => {
             this.camera = ref;
           }}
-          style={{ flex: 3 }}
+          style={{ flex: 4 }}
           type={Camera.Constants.Type.back}
           autoFocus={Camera.Constants.AutoFocus.on}
-        />
-        <View style={{ flex: 1, backgroundColor: "white" }}>
+        >
+          <View style={[styles.scannerGuide, {justifyContent:"center", alignContent:"flex-end"}]}>
+            <Text style={styles.scannerGuideText}>Please Focus on The Medicine Label</Text>
+          </View>
+          <View style={{ flex: 1 }} />
+          <View style={styles.scannerGuide} />
+        </Camera>
+        <View style={{ flex: 1, backgroundColor: "#000" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              marginTop: 8,
+            }}
+          >
+            <View style={{ width: 64 }} />
+            <TouchableOpacity
+              onPress={() => {
+                this.takePicture();
+                this.setModalVisible(true);
+                console.log("clicked button succed");
+              }}
+              style={{ alignItems: "center", marginHorizontal: 18 }}
+            >
+              <Text style={{ color: "#ffffff", fontSize: 16 }}>Get Info</Text>
+              <Ionicons
+                name="ios-radio-button-on"
+                size={82}
+                color={colors.ORANGE_LIGHT}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.takePicture();
+                this.setModalVisible(true);
+                console.log("clicked button succed");
+              }}
+              style={{ alignItems: "center" }}
+            >
+              <Text style={{ color: "#ffffff", fontSize: 16 }}>Read Label</Text>
+              <Ionicons
+                name="ios-radio-button-on"
+                size={64}
+                color={colors.ORANGE}
+              />
+            </TouchableOpacity>
+          </View>
           <Modal
             description={"WAIT กรุณารอสักครู่"}
             buttonTitle={"Exit"}
@@ -179,17 +220,6 @@ export default class ScannerScreen extends React.Component<{}, State> {
             }}
             visible={this.state.modalVisible}
           />
-          <TouchableOpacity
-            onPress={() => {
-              this.takePicture();
-              this.setModalVisible(true);
-              console.log("clicked button succed");
-            }}
-            style={{ alignItems: "center" }}
-          >
-            <Ionicons name="ios-radio-button-on" size={64} color="black" />
-            <Text style={{ color: "#ffffff", fontSize: 6 }}> take a photo</Text>
-          </TouchableOpacity>
         </View>
       </SafeAreaView>
     );

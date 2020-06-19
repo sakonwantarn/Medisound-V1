@@ -1,11 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import MedlistScreen from "./medlist/MedlistScreen";
 import { colors } from "../res/colors";
-import MedicineScreen from "./medlist/MedicineScren";
 import { Ionicons } from "@expo/vector-icons";
-import Button from "../components/Button";
 import { NavigationProp } from "@react-navigation/native";
+import HomeScreen from "./HomeScreen";
+import ProfileScreen from "./ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -13,7 +12,7 @@ interface Props {
   navigation: NavigationProp<any, any>;
 }
 
-export default class Medlist extends React.Component<Props> {
+export default class Home extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
@@ -42,32 +41,11 @@ export default class Medlist extends React.Component<Props> {
         }}
       >
         <Stack.Screen
-          name="MedListScreen"
-          component={MedlistScreen}
-          options={{
-            headerRight: () => (
-              <Button
-                onPress={() => this.props.navigation.navigate("AddMedicine")}
-                type="text"
-                icon="plus"
-              >
-                Add
-              </Button>
-            ),
-          }}
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen name="AddMedicine" component={MedicineScreen} 
-          options={{
-            headerRight: () => (
-              <Button
-                onPress={() => this.props.navigation.navigate("MedListScreen")}
-                type="text"
-                icon="save"
-              >
-                Save
-              </Button>
-            ),
-          }}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     );
   }

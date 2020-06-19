@@ -13,14 +13,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    alignContent: "center", 
+    alignContent: "center",
   },
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
-    backgroundColor:"#00000090",
+    backgroundColor: "#00000090",
   },
   modalView: {
     alignItems: "center",
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-  }, 
+  },
   textStyle: {
     color: colors.WHITE,
     fontWeight: "bold",
@@ -70,6 +70,10 @@ export const styles = StyleSheet.create({
   },
   medlistItemImageContainer: {
     flex: 1 / 2,
+    marginRight: 8,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
   medlistItemMedicineContainer: {
     flex: 3,
@@ -104,6 +108,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 2,
   },
+  buttonTextStyle: {
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+  },
   buttonText: {
     color: colors.RED_BROWN,
     fontSize: 16,
@@ -113,16 +121,25 @@ export const styles = StyleSheet.create({
   textInputContainer: {
     flexDirection: "row",
     marginHorizontal: 16,
-    marginVertical: 12,
+    paddingVertical: 12,
+    borderColor: colors.GRAY_SEPARATOR
   },
   textInputForm: {
     color: colors.BLACK_FONT,
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "right",
   },
   textInputLabel: {
     color: colors.GRAY_TEXT,
-    fontSize: 20,
+    fontSize: 18,
+  },
+  formContainer: {
+    backgroundColor: "white",
+    borderColor: colors.GRAY_SEPARATOR,
+    borderWidth: 1,
+    borderRadius: 4,
+    marginHorizontal: 12,
+    marginVertical: 8
   },
 
   homeListContainer: {
@@ -137,12 +154,12 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: colors.WHITE,
     padding: 8,
-    borderRadius: 8
+    borderRadius: 8,
   },
   homeListHeader: {
-    borderBottomWidth:1,
-    borderBottomColor:colors.GRAY_SEPARATOR,
-    paddingBottom: 8
+    borderBottomWidth: 1,
+    borderBottomColor: colors.GRAY_SEPARATOR,
+    paddingBottom: 8,
   },
   homeListHeaderText: {
     color: colors.BLACK_FONT,
@@ -151,17 +168,29 @@ export const styles = StyleSheet.create({
   },
   homeListContent: {
     marginTop: 8,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   homeListButtonContainer: {
     alignContent: "center",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   homeHeaderText: {
     color: colors.WHITE,
     fontSize: 20,
     fontWeight: "bold",
-    marginVertical: 4
-  }
+    marginVertical: 4,
+  },
+
+  scannerGuideText: {
+    color: colors.WHITE,
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginHorizontal: 20,
+  },
+  scannerGuide: {
+    backgroundColor: "#00000080",
+    flex: 1,
+  },
 });

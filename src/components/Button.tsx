@@ -1,14 +1,14 @@
 import React from "react";
 import { Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 import { styles } from "../res/styles";
 import { colors } from "../res/colors";
 
 interface Props {
   children?: string;
-  icon?: any;
-  type?: "outline" | "solid";
+  icon?: "plus" | "save" | "camera";
+  type?: "outline" | "solid" | "text";
   onPress(): void;
 }
 
@@ -38,7 +38,21 @@ class Button extends React.Component<Props> {
           <Text style={styles.buttonText}>{children}</Text>
         </TouchableOpacity>
       );
-    } else
+    } else if (type === "text") {
+      return (
+        <TouchableOpacity
+          onPress={onPress}
+          style={{ ...styles.button, ...styles.buttonTextStyle }}
+        >
+          {icon === "plus" ? (
+            <Feather name={icon} size={20} color={colors.RED_BROWN} />
+          ) : icon === "save" ? (
+            <Ionicons name="md-save" size={20} color={colors.RED_BROWN} style={{marginRight:6}} />
+          ) : null}
+          <Text style={styles.buttonText}>{children}</Text>
+        </TouchableOpacity>
+      );
+    } else {
       return (
         <TouchableOpacity
           onPress={onPress}
@@ -47,6 +61,7 @@ class Button extends React.Component<Props> {
           <Text style={styles.buttonText}>{children}</Text>
         </TouchableOpacity>
       );
+    }
   }
 }
 

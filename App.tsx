@@ -2,8 +2,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Camera from "./src/screens/Camera";
-import HomeScreen from "./src/screens/HomeScreen";
 import Medlist from "./src/screens/Medlist";
+import Home from "./src/screens/Home";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "./src/res/colors";
 
@@ -14,7 +14,7 @@ class App extends React.Component {
     return (
       <NavigationContainer>
         <Tab.Navigator
-          backBehavior="initialRoute"
+          backBehavior="history"
           tabBarOptions={{
             activeTintColor: colors.RED_BROWN,
             inactiveTintColor: colors.RED_BROWN_FADED,
@@ -29,7 +29,7 @@ class App extends React.Component {
         >
           <Tab.Screen
             name="Home"
-            component={HomeScreen}
+            component={Home}
             options={{
               tabBarIcon: ({ size, color }) => (
                 <FontAwesome name="heart" size={size} color={color} />

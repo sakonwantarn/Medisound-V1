@@ -1,7 +1,6 @@
 import React from "react";
-import { SafeAreaView, StatusBar, Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import { ScrollView, FlatList } from "react-native-gesture-handler";
-import ScreenContainer from "../../components/ScreenContainer";
 import { default as Header } from "../../components/header/Medlist";
 import { styles } from "../../res/styles";
 import { colors } from "../../res/colors";
@@ -28,7 +27,7 @@ const DATA = [
 const NODATA = [];
 
 interface Props {
-    navigation: NavigationProp<any,any>;
+  navigation: NavigationProp<any, any>;
 }
 
 export default class MedlistScreen extends React.Component<Props> {
@@ -40,7 +39,7 @@ export default class MedlistScreen extends React.Component<Props> {
     };
   }
   render() {
-      const {navigation} = this.props;
+    const { navigation } = this.props;
     return (
       <ScrollView>
         <View
@@ -48,7 +47,10 @@ export default class MedlistScreen extends React.Component<Props> {
             marginHorizontal: 20,
           }}
         >
-          <Header onPress={()=> navigation.navigate("AddMedicine")} title={"MORNING"} />
+          <Header
+            onPress={() => navigation.navigate("AddMedicine")}
+            title={"MORNING"}
+          />
           <FlatList
             data={NODATA}
             keyExtractor={(item) => `${item.id}`}
@@ -133,7 +135,12 @@ export default class MedlistScreen extends React.Component<Props> {
             renderItem={({ item }) => {
               return (
                 <View style={styles.medlistItemContainer}>
-                  <View style={styles.medlistItemImageContainer}></View>
+                  <View style={styles.medlistItemImageContainer}>
+                    <Image
+                      style={{ width: 30, height: 30 }}
+                      source={require("../../../assets/icons/tablet.png")}
+                    />
+                  </View>
                   <View style={styles.medlistItemMedicineContainer}>
                     <Text style={styles.medlistItemText}>{item.title}</Text>
                     <Text style={styles.medlistItemText}>500 mg</Text>
@@ -192,7 +199,12 @@ export default class MedlistScreen extends React.Component<Props> {
             renderItem={({ item }) => {
               return (
                 <View style={styles.medlistItemContainer}>
-                  <View style={styles.medlistItemImageContainer}></View>
+                  <View style={styles.medlistItemImageContainer}>
+                    <Image
+                      style={{ width: 30, height: 30 }}
+                      source={require("../../../assets/icons/tablet.png")}
+                    />
+                  </View>
                   <View style={styles.medlistItemMedicineContainer}>
                     <Text style={styles.medlistItemText}>{item.title}</Text>
                     <Text style={styles.medlistItemText}>500 mg</Text>

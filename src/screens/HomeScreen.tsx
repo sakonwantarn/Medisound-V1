@@ -138,10 +138,14 @@ export default class HomeScreen extends React.Component<Props, State> {
             }}
             ListHeaderComponent={
               <View style={[styles.containerCenter, { marginTop: 28 }]}>
-                <Image
-                  style={{ width: 200, height: 200 }}
-                  source={require("../../assets/images/home.png")}
-                />
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate("Profile")}
+                >
+                  <Image
+                    style={{ width: 200, height: 200 }}
+                    source={require("../../assets/images/home.png")}
+                  />
+                </TouchableOpacity>
                 <Text style={styles.homeHeaderText}>Hallo, Granny!</Text>
                 <Text style={styles.homeHeaderText}>Medicine For Today :</Text>
               </View>

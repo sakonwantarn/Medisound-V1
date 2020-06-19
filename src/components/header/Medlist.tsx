@@ -20,7 +20,7 @@ class MedlistHeader extends React.Component<Props> {
           <Text style={styles.medlistHeaderTitle}>{this.props.title}</Text>
         </View>
         <View style={{flex:1, alignItems: "flex-end"}}>
-          <Button type="outline" onPress={this.props.onPress} icon={"plus"}>{"ADD"}</Button>
+          {/* <Button type="outline" onPress={this.props.onPress} icon={"plus"}>{"ADD"}</Button> */}
         </View>
       </View>
     );
