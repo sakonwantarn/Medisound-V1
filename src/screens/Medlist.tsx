@@ -60,16 +60,8 @@ export default class Medlist extends React.Component<Props> {
         <Stack.Screen name="AddMedicine" component={MedicineScreen} 
           options={{
             title: "Add Medicine",
-            headerRight: () => (
-              <Button
-                onPress={() => this.props.navigation.navigate("MedListScreen")}
-                type="text"
-                icon="save"
-              >
-                Save
-              </Button>
-            ),
-          }}/>
+          }}
+        />
       </Stack.Navigator>
     );
   }

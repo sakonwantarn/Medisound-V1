@@ -142,7 +142,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     marginHorizontal: 12,
-    marginVertical: 8
+    marginVertical: 8,
   },
 
   homeListContainer: {

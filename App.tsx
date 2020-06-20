@@ -7,7 +7,7 @@ import Home from "./src/screens/Home";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "./src/res/colors";
 import { Provider } from "react-redux";
-import store from "./src/stores";
+import { store } from "./src/stores";
 
 const Tab = createBottomTabNavigator();
 

@@ -1,8 +1,11 @@
-import { createStore } from 'redux'  
-import reducers from './reducers'
+import { combineReducers, createStore } from "redux"; 
+import { medicineReducer } from "./medicine/reducers";
 
 
-// Create a store with our reducer
-const store = createStore(reducers)
+const rootReducer = combineReducers({
+  medicine: medicineReducer
+});
 
-export default store
+
+export type ApptState = ReturnType<typeof rootReducer>;
+export const store = createStore(rootReducer);

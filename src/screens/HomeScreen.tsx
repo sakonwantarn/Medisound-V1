@@ -7,26 +7,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
 import Modal from "../components/Modal";
+import { connect } from "react-redux";
 
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-dsas-3ad53abb28ba", 
-    title: "Tatrazine",
-    time: "13.00"
-  },
-  {
-    id: "bd7acbea-c1b1-46c2-asdw-3ad53abb28ba", 
-    title: "Vitamins C",
-    time: "13.00"
-  },
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba", 
-    title: "Paracetamol",
-    time: "18.30"
-  },
-];
-
-const NODATA = [];
+const mapStateToProps = (state: any) => {
+  return {
+    medicineList: state.medicine,
+  };
+};
 
 interface Props {
   navigation: NavigationProp<any, any>;
@@ -36,7 +23,7 @@ interface State {
   modalVisible: boolean;
 }
 
-export default class HomeScreen extends React.Component<Props, State> {
+export class HomeScreen extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -44,7 +31,12 @@ export default class HomeScreen extends React.Component<Props, State> {
     };
   }
 
+  componentDidMount() {
+    console.log(this.props.medicineList);
+  }
+
   render() {
+    console.log(this.props.medicineList);
     const { navigation } = this.props;
     return (
       <ScreenContainer>
@@ -56,7 +48,7 @@ export default class HomeScreen extends React.Component<Props, State> {
           source={require("../../assets/images/wallpaper.png")}
         >
           <FlatList
-            data={DATA}
+            data={this.props.medicineList.medicine}
             keyExtractor={(item) => `${item.id}`}
             ListEmptyComponent={() => {
               return (
@@ -81,7 +73,7 @@ export default class HomeScreen extends React.Component<Props, State> {
                 <View style={styles.homeListContainer}>
                   <View style={styles.homeListHeader}>
                     <Text style={styles.homeListHeaderText}>
-                      Before Meal on {item.time}
+                      {item.specificTime} on {item.time}
                     </Text>
                   </View>
                   <View style={styles.homeListContent}>
@@ -92,11 +84,9 @@ export default class HomeScreen extends React.Component<Props, State> {
                       />
                     </View>
                     <View style={{ flex: 3 }}>
-                      <Text style={styles.homeListHeaderText}>
-                        {item.title}
-                      </Text>
+                      <Text style={styles.homeListHeaderText}>{item.name}</Text>
                       <Text style={{ color: colors.BLACK_FONT, fontSize: 18 }}>
-                        50 mg
+                        {item.detail}
                       </Text>
                     </View>
                     <View style={{ flex: 2 }}>
@@ -168,3 +158,5 @@ export default class HomeScreen extends React.Component<Props, State> {
     );
   }
 }
+
+export default connect(mapStateToProps)(HomeScreen);

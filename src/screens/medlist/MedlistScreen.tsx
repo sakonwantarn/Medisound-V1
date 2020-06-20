@@ -5,44 +5,34 @@ import { default as Header } from "../../components/header/Medlist";
 import { styles } from "../../res/styles";
 import { colors } from "../../res/colors";
 import { NavigationProp } from "@react-navigation/native";
-
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-dsas-3ad53abb28ba",
-    title: "Tatrazine",
-    time: "13.00",
-  },
-  {
-    id: "bd7acbea-c1b1-46c2-asdw-3ad53abb28ba",
-    title: "Vitamins C",
-    time: "13.00",
-  },
-];
-
-const SDATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Paracetamol",
-    time: "18.30",
-  },
-];
-
-const NODATA = [];
+import { connect } from "react-redux";
 
 interface Props {
   navigation: NavigationProp<any, any>;
 }
 
-export default class MedlistScreen extends React.Component<Props> {
+export class MedlistScreen extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-
-    this.state = {
-      morningMedicine: DATA,
-    };
   }
+
+  filterData(category: string) {
+    let medicineList = this.props.medicineList.medicine;
+    let filtered = [];
+    for (let medicine of medicineList) {
+      if (medicine.categoryTime === category.toUpperCase( )) {
+        filtered.push(medicine);
+      }
+    }
+    return filtered;
+  }
+
   render() {
     const { navigation } = this.props;
+    const morningMedicine = this.filterData("Morning");
+    const afternoonMedicine = this.filterData("Afternoon");
+    const eveningMedicine = this.filterData("Evening");
+
     return (
       <ScrollView style={{ backgroundColor: colors.WHITE, flex: 1 }}>
         <View
@@ -55,10 +45,10 @@ export default class MedlistScreen extends React.Component<Props> {
             title={"MORNING"}
           />
           <FlatList
-            data={NODATA}
+            data={morningMedicine}
             keyExtractor={(item) => `${item.id}`}
             ItemSeparatorComponent={({ index }) =>
-              index === 0 || index === NODATA.length - 1 ? null : (
+              index === 0 || index === morningMedicine.length - 1 ? null : (
                 <View
                   style={{
                     borderWidth: 1 / 2,
@@ -79,14 +69,25 @@ export default class MedlistScreen extends React.Component<Props> {
             renderItem={({ item }) => {
               return (
                 <View style={styles.medlistItemContainer}>
-                  <View style={styles.medlistItemImageContainer}></View>
+                  <View style={styles.medlistItemImageContainer}>
+                    <Image
+                      style={{ width: 30, height: 30 }}
+                      source={require("../../../assets/icons/tablet.png")}
+                    />
+                  </View>
                   <View style={styles.medlistItemMedicineContainer}>
-                    <Text style={styles.medlistItemText}>{item.title}</Text>
-                    <Text style={styles.medlistItemText}>10 mg</Text>
+                    <Text
+                      style={[styles.medlistItemText, { fontWeight: "bold" }]}
+                    >
+                      {item.name}
+                    </Text>
+                    <Text style={styles.medlistItemText}>{item.detail}</Text>
                   </View>
                   <View style={styles.medlistItemTimeContainer}>
-                    <Text style={styles.medlistItemText}>Before Meal</Text>
-                    <Text style={styles.medlistItemText}>07.00</Text>
+                    <Text style={styles.medlistItemText}>
+                      {item.specificTime}
+                    </Text>
+                    <Text style={styles.medlistItemText}>{item.time}</Text>
                   </View>
                 </View>
               );
@@ -95,13 +96,16 @@ export default class MedlistScreen extends React.Component<Props> {
               shadowColor: "#000",
               shadowOffset: {
                 width: 0,
-                height: 3,
+                height: 1,
               },
-              shadowOpacity: 0.27,
-              shadowRadius: 4.65,
-              elevation: 6,
+              shadowOpacity: 0.22,
+              shadowRadius: 2.22,
+
+              elevation: 3,
               backgroundColor: colors.WHITE,
               borderRadius: 6,
+              borderWidth: 1,
+              borderColor: colors.GRAY_SEPARATOR,
               paddingVertical: 0,
               paddingHorizontal: 8,
             }}
@@ -114,10 +118,10 @@ export default class MedlistScreen extends React.Component<Props> {
         >
           <Header title={"AFTERNOON"} />
           <FlatList
-            data={DATA}
+            data={afternoonMedicine}
             keyExtractor={(item) => `${item.id}`}
             ItemSeparatorComponent={({ index }) =>
-              index === 0 || index === DATA.length - 1 ? null : (
+              index === 0 || index === afternoonMedicine.length - 1 ? null : (
                 <View
                   style={{
                     borderWidth: 1 / 2,
@@ -145,12 +149,18 @@ export default class MedlistScreen extends React.Component<Props> {
                     />
                   </View>
                   <View style={styles.medlistItemMedicineContainer}>
-                    <Text style={styles.medlistItemText}>{item.title}</Text>
-                    <Text style={styles.medlistItemText}>1 Capsule</Text>
+                    <Text
+                      style={[styles.medlistItemText, { fontWeight: "bold" }]}
+                    >
+                      {item.name}
+                    </Text>
+                    <Text style={styles.medlistItemText}>{item.detail}</Text>
                   </View>
                   <View style={styles.medlistItemTimeContainer}>
-                    <Text style={styles.medlistItemText}>Before Meal</Text>
-                    <Text style={styles.medlistItemText}>07.00</Text>
+                    <Text style={styles.medlistItemText}>
+                      {item.specificTime}
+                    </Text>
+                    <Text style={styles.medlistItemText}>{item.time}</Text>
                   </View>
                 </View>
               );
@@ -159,13 +169,16 @@ export default class MedlistScreen extends React.Component<Props> {
               shadowColor: "#000",
               shadowOffset: {
                 width: 0,
-                height: 3,
+                height: 1,
               },
-              shadowOpacity: 0.27,
-              shadowRadius: 4.65,
-              elevation: 6,
+              shadowOpacity: 0.22,
+              shadowRadius: 2.22,
+
+              elevation: 3,
               backgroundColor: colors.WHITE,
               borderRadius: 6,
+              borderWidth: 1,
+              borderColor: colors.GRAY_SEPARATOR,
               paddingVertical: 0,
               paddingHorizontal: 8,
             }}
@@ -175,13 +188,18 @@ export default class MedlistScreen extends React.Component<Props> {
           style={{
             marginHorizontal: 20,
           }}
+        ></View>
+        <View
+          style={{
+            marginHorizontal: 20,
+          }}
         >
           <Header title={"EVENING"} />
           <FlatList
-            data={SDATA}
+            data={eveningMedicine}
             keyExtractor={(item) => `${item.id}`}
             ItemSeparatorComponent={({ index }) =>
-              index === 0 || index === SDATA.length - 1 ? null : (
+              index === 0 || index === eveningMedicine.length - 1 ? null : (
                 <View
                   style={{
                     borderWidth: 1 / 2,
@@ -209,12 +227,18 @@ export default class MedlistScreen extends React.Component<Props> {
                     />
                   </View>
                   <View style={styles.medlistItemMedicineContainer}>
-                    <Text style={styles.medlistItemText}>{item.title}</Text>
-                    <Text style={styles.medlistItemText}>500 mg</Text>
+                    <Text
+                      style={[styles.medlistItemText, { fontWeight: "bold" }]}
+                    >
+                      {item.name}
+                    </Text>
+                    <Text style={styles.medlistItemText}>{item.detail}</Text>
                   </View>
                   <View style={styles.medlistItemTimeContainer}>
-                    <Text style={styles.medlistItemText}>Before Meal</Text>
-                    <Text style={styles.medlistItemText}>07.00</Text>
+                    <Text style={styles.medlistItemText}>
+                      {item.specificTime}
+                    </Text>
+                    <Text style={styles.medlistItemText}>{item.time}</Text>
                   </View>
                 </View>
               );
@@ -223,19 +247,35 @@ export default class MedlistScreen extends React.Component<Props> {
               shadowColor: "#000",
               shadowOffset: {
                 width: 0,
-                height: 3,
+                height: 1,
               },
-              shadowOpacity: 0.27,
-              shadowRadius: 4.65,
-              elevation: 6,
+              shadowOpacity: 0.22,
+              shadowRadius: 2.22,
+
+              elevation: 3,
               backgroundColor: colors.WHITE,
               borderRadius: 6,
+              borderWidth: 1,
+              borderColor: colors.GRAY_SEPARATOR,
               paddingVertical: 0,
               paddingHorizontal: 8,
             }}
           />
         </View>
+        <View
+          style={{
+            marginHorizontal: 20,
+          }}
+        ></View>
       </ScrollView>
     );
   }
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    medicineList: state.medicine,
+  };
+};
+
+export default connect(mapStateToProps)(MedlistScreen);
