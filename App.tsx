@@ -17,12 +17,11 @@ class App extends React.Component {
           backBehavior="history"
           tabBarOptions={{
             activeTintColor: colors.RED_BROWN,
-            inactiveTintColor: colors.RED_BROWN_FADED,
-            tabStyle: {
+            inactiveTintColor: colors.RED_BROWN_FADED, 
+            style: {
               backgroundColor: colors.ORANGE_LIGHT,
-              paddingTop: 2,
-              shadowColor: colors.BLACK,
-              borderWidth: 0,
+              paddingVertical: 10,
+              height: 65,
             },
             labelStyle: { fontSize: 16, fontWeight: "bold" },
           }}

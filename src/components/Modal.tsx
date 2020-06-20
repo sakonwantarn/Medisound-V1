@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal as RNModal, View, Text, TouchableOpacity } from "react-native";
+import { Modal as RNModal, View, Text, TouchableOpacity, Image } from "react-native";
 import { styles } from "../res/styles";
 import { colors } from "../res/colors";
 import Button from "./Button";
@@ -56,6 +56,7 @@ class Modal extends React.Component<Props> {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <Image style={{width: 240, height: 240}} source={require("../../assets/images/elephant.png")}/>
             <Text style={[styles.modalText, { color: textColor }]}>
               {description}
             </Text>

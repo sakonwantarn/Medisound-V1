@@ -119,6 +119,9 @@ export const styles = StyleSheet.create({
   },
 
   textInputContainer: {
+    alignContent:"center",
+    alignItems:"center",
+    justifyContent:"center",
     flexDirection: "row",
     marginHorizontal: 16,
     paddingVertical: 12,

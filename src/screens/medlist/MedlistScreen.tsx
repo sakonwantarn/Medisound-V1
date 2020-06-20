@@ -8,19 +8,22 @@ import { NavigationProp } from "@react-navigation/native";
 
 const DATA = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    imageUrl: "http://via.placeholder.com/160x160",
-    title: "Paracetamol",
-  },
-  {
     id: "bd7acbea-c1b1-46c2-dsas-3ad53abb28ba",
-    imageUrl: "http://via.placeholder.com/160x160",
     title: "Tatrazine",
+    time: "13.00",
   },
   {
     id: "bd7acbea-c1b1-46c2-asdw-3ad53abb28ba",
-    imageUrl: "http://via.placeholder.com/160x160",
     title: "Vitamins C",
+    time: "13.00",
+  },
+];
+
+const SDATA = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    title: "Paracetamol",
+    time: "18.30",
   },
 ];
 
@@ -41,7 +44,7 @@ export default class MedlistScreen extends React.Component<Props> {
   render() {
     const { navigation } = this.props;
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: colors.WHITE, flex: 1 }}>
         <View
           style={{
             marginHorizontal: 20,
@@ -79,7 +82,7 @@ export default class MedlistScreen extends React.Component<Props> {
                   <View style={styles.medlistItemImageContainer}></View>
                   <View style={styles.medlistItemMedicineContainer}>
                     <Text style={styles.medlistItemText}>{item.title}</Text>
-                    <Text style={styles.medlistItemText}>500 mg</Text>
+                    <Text style={styles.medlistItemText}>10 mg</Text>
                   </View>
                   <View style={styles.medlistItemTimeContainer}>
                     <Text style={styles.medlistItemText}>Before Meal</Text>
@@ -143,7 +146,7 @@ export default class MedlistScreen extends React.Component<Props> {
                   </View>
                   <View style={styles.medlistItemMedicineContainer}>
                     <Text style={styles.medlistItemText}>{item.title}</Text>
-                    <Text style={styles.medlistItemText}>500 mg</Text>
+                    <Text style={styles.medlistItemText}>1 Capsule</Text>
                   </View>
                   <View style={styles.medlistItemTimeContainer}>
                     <Text style={styles.medlistItemText}>Before Meal</Text>
@@ -175,10 +178,10 @@ export default class MedlistScreen extends React.Component<Props> {
         >
           <Header title={"EVENING"} />
           <FlatList
-            data={NODATA}
+            data={SDATA}
             keyExtractor={(item) => `${item.id}`}
             ItemSeparatorComponent={({ index }) =>
-              index === 0 || index === NODATA.length - 1 ? null : (
+              index === 0 || index === SDATA.length - 1 ? null : (
                 <View
                   style={{
                     borderWidth: 1 / 2,

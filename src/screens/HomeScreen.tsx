@@ -10,19 +10,19 @@ import Modal from "../components/Modal";
 
 const DATA = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    imageUrl: "http://via.placeholder.com/160x160",
-    title: "Paracetamol",
-  },
-  {
-    id: "bd7acbea-c1b1-46c2-dsas-3ad53abb28ba",
-    imageUrl: "http://via.placeholder.com/160x160",
+    id: "bd7acbea-c1b1-46c2-dsas-3ad53abb28ba", 
     title: "Tatrazine",
+    time: "13.00"
   },
   {
-    id: "bd7acbea-c1b1-46c2-asdw-3ad53abb28ba",
-    imageUrl: "http://via.placeholder.com/160x160",
+    id: "bd7acbea-c1b1-46c2-asdw-3ad53abb28ba", 
     title: "Vitamins C",
+    time: "13.00"
+  },
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba", 
+    title: "Paracetamol",
+    time: "18.30"
   },
 ];
 
@@ -81,7 +81,7 @@ export default class HomeScreen extends React.Component<Props, State> {
                 <View style={styles.homeListContainer}>
                   <View style={styles.homeListHeader}>
                     <Text style={styles.homeListHeaderText}>
-                      Before Meal on 12.12
+                      Before Meal on {item.time}
                     </Text>
                   </View>
                   <View style={styles.homeListContent}>
@@ -93,7 +93,7 @@ export default class HomeScreen extends React.Component<Props, State> {
                     </View>
                     <View style={{ flex: 3 }}>
                       <Text style={styles.homeListHeaderText}>
-                        Acetylcysteine
+                        {item.title}
                       </Text>
                       <Text style={{ color: colors.BLACK_FONT, fontSize: 18 }}>
                         50 mg

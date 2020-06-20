@@ -5,7 +5,12 @@
 ```yarn install```  
 2. get ios modules with cocoapods. Make sure you already install cocoapods and xcode as well.     
 ```npx pod-install```     
-3. compile it to your phone with xcode or android studio      
+3. create vaja API key from vaja server, paster the key inside vajaAPI.ts   
+```./src/services/vajaAPI.ts```  
+4. create firebase account and generate firebase key.       
+4.1 iOS: put on `./src/ios/medisound.xcworkspace`       
+4.2 android: put on `./src/android/app/`     
+5. compile it to your phone with xcode or android studio      
    
 ## Generate released APK for Android   
 1. Generate keystore on ./android/app

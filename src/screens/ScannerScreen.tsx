@@ -163,8 +163,15 @@ export default class ScannerScreen extends React.Component<{}, State> {
           type={Camera.Constants.Type.back}
           autoFocus={Camera.Constants.AutoFocus.on}
         >
-          <View style={[styles.scannerGuide, {justifyContent:"center", alignContent:"flex-end"}]}>
-            <Text style={styles.scannerGuideText}>Please Focus on The Medicine Label</Text>
+          <View
+            style={[
+              styles.scannerGuide,
+              { justifyContent: "center", alignContent: "flex-end" },
+            ]}
+          >
+            <Text style={styles.scannerGuideText}>
+              Please Focus on The Medicine Label
+            </Text>
           </View>
           <View style={{ flex: 1 }} />
           <View style={styles.scannerGuide} />
@@ -213,10 +220,10 @@ export default class ScannerScreen extends React.Component<{}, State> {
             description={"WAIT กรุณารอสักครู่"}
             buttonTitle={"Exit"}
             onPress={() => {
-              this.setModalVisible(!this.state.modalVisible);
+              this.setModalVisible(false);
             }}
             onRequestClose={() => {
-              this.setModalVisible(!this.state.modalVisible);
+              this.setModalVisible(false);
             }}
             visible={this.state.modalVisible}
           />
