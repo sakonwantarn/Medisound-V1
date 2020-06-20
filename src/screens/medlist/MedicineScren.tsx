@@ -11,6 +11,7 @@ interface State {
   shapeField: string;
   colorFiled: string;
   timeField: string;
+  specificTimeField: string;
   categoryField: string;
 }
 
@@ -24,6 +25,7 @@ export default class MedicineScreen extends React.Component<{}, State> {
       shapeField: "",
       colorFiled: "",
       timeField: "",
+      specificTimeField: "",
       categoryField: "",
     };
   }
@@ -98,7 +100,15 @@ export default class MedicineScreen extends React.Component<{}, State> {
             }
             value={this.state.timeField}
             label="Time"
-            placeholder="Time"
+            placeholder="7.00"
+          />
+          <TextInput
+            onChangeText={(specificTimeField: any) =>
+              this.setState({ specificTimeField: specificTimeField })
+            }
+            value={this.state.specificTimeField}
+            label="Specific"
+            placeholder="After meal"
           />
           <TextInput
             onChangeText={(categoryField: any) =>
@@ -106,7 +116,7 @@ export default class MedicineScreen extends React.Component<{}, State> {
             }
             value={this.state.categoryField}
             label="Category"
-            placeholder="After meal"
+            placeholder="Morning"
             last
           />
         </View>

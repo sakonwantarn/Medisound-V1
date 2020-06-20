@@ -3,7 +3,8 @@ import { WaveFile } from "wavefile";
 import * as FileSystem from "expo-file-system";
 
 const uriBase = "https://api.aiforthai.in.th/vaja";
-const apikey = "secret";
+// const apikey = "secret";
+const apikey = "9CpCn1hFx625KG2VmLoyZjtfTREIbYXJ";
 
 interface ServerResponse {
   data: any;
